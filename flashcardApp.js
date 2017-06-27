@@ -66,7 +66,7 @@ function addCard() {
                         return true;
                     }
 				}
-			//variable which uses the basicFlasCard constructor to create a new basic card based on the user's input	
+			//variable which uses the basicFlashCard constructor to create a new basic card based on the user's input	
             }]).then(function(answer) {
                 var newBasic = new basicFlashCard(answer.front, answer.back);
                 newBasic.create();
@@ -74,6 +74,7 @@ function addCard() {
 
             });
 
+        //prompts the user for what the full text and cloze portion are for the cloze flashcard
         } else if (answer.cardType === 'cloze-flashcard') {
             inquirer.prompt([{
                 name: 'fullText',
@@ -97,6 +98,7 @@ function addCard() {
                         return true;
                     }
                 }
+            //variable which uses the clozeFlashCard constructor to create a new cloze card based on the user's input
             }]).then(function(answer) {
                 var fullText = answer.fullText;
                 var cloze = answer.cloze;
@@ -111,13 +113,14 @@ function addCard() {
 
 };
 
+//function that displays all of the cards created so far-->pulls this text from the log.txt file
 function showCards() {
 	fs.readFile('./log.txt', 'utf8', function(error, data) {
         //if there is an error, log it
         if (error) {
             console.log('Error occurred: ' + error);
         }
-
+        //console log the data
         else {
         	console.log(data);
         }
